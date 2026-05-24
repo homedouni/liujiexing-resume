@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>刘杰幸 | AI 解决方案与工程信息化</title>
+  <meta name="description" content="刘杰幸的个人主页，展示教育背景、AI 解决方案实习经历、工程文档智能分类项目与活动数据分析项目。">
+  <link rel="preconnect" href="https://unpkg.com">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --ink: #182033;
+      --muted: #5b6578;
+      --line: #dce3ed;
+      --blue: #2f66d0;
+      --teal: #0f8f87;
+      --coral: #d55c47;
+      --gold: #b57918;
+      --shadow: 0 18px 50px rgba(29, 41, 57, .12);
+      --radius: 8px;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(47, 102, 208, .07) 0, rgba(255, 255, 255, 0) 440px),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(220, 227, 237, .82);
+      background: rgba(246, 248, 251, .84);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      width: min(1120px, calc(100% - 32px));
+      min-height: 64px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .nav-links a {
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      background: rgba(47, 102, 208, .08);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .hero {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 58px 0 44px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+      align-items: center;
+      gap: 52px;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .68);
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .mobile-portrait {
+      display: none;
+    }
+
+    .hero h1 {
+      margin: 22px 0 12px;
+      font-size: clamp(46px, 7vw, 88px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(20px, 3vw, 32px);
+      font-weight: 800;
+      line-height: 1.28;
+    }
+
+    .hero-copy {
+      max-width: 640px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 14px 28px rgba(47, 102, 208, .24);
+    }
+
+    .button.secondary {
+      border-color: var(--line);
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 640px;
+      margin-top: 34px;
+    }
+
+    .stat {
+      min-height: 96px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .78);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--ink);
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .portrait-panel {
+      position: relative;
+      align-self: stretch;
+      min-height: 520px;
+      display: flex;
+      align-items: end;
+    }
+
+    .portrait-shell {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, #ffffff 0%, #eef4ff 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .portrait-shell img {
+      width: 100%;
+      aspect-ratio: 4 / 4.6;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .quick-card {
+      position: absolute;
+      left: -34px;
+      bottom: 34px;
+      width: min(260px, 72%);
+      padding: 16px;
+      border: 1px solid rgba(220, 227, 237, .9);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .9);
+      box-shadow: 0 14px 38px rgba(29, 41, 57, .15);
+      backdrop-filter: blur(14px);
+    }
+
+    .quick-card p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .section {
+      padding: 48px 0 74px;
+      border-top: 1px solid rgba(220, 227, 237, .7);
+    }
+
+    .section:nth-child(odd) {
+      background: rgba(255, 255, 255, .48);
+    }
+
+    #profile {
+      padding-top: 0;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 34px;
+      align-items: start;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--coral);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .section h2 {
+      margin: 8px 0 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .section-intro {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 10px 30px rgba(29, 41, 57, .06);
+    }
+
+    .profile-card {
+      grid-column: span 7;
+      padding: 26px;
+    }
+
+    .contact-card {
+      grid-column: span 5;
+      padding: 26px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.3;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .info-list {
+      display: grid;
+      gap: 13px;
+      margin-top: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .info-item i {
+      width: 20px;
+      height: 20px;
+      color: var(--blue);
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 22px;
+      padding: 24px;
+    }
+
+    .time {
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .meta {
+      margin: 4px 0 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .bullets {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .bullets li {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .bullets li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .72em;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--teal);
+    }
+
+    .project-card {
+      grid-column: span 6;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: #234b9a;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tag.alt {
+      background: #edf8f6;
+      color: #08736d;
+    }
+
+    .tag.warm {
+      background: #fff4ec;
+      color: #a04c21;
+    }
+
+    .skill {
+      grid-column: span 3;
+      min-height: 150px;
+      padding: 22px;
+    }
+
+    .skill i {
+      width: 28px;
+      height: 28px;
+      color: var(--teal);
+      margin-bottom: 18px;
+    }
+
+    .skill p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .footer {
+      padding: 46px 0;
+      color: var(--muted);
+      background: #111827;
+    }
+
+    .footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .footer strong {
+      color: #fff;
+    }
+
+    .footer a {
+      color: #c8d8ff;
+      font-weight: 800;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        min-height: 58px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding-top: 30px;
+        gap: 28px;
+      }
+
+      .portrait-panel {
+        display: none;
+      }
+
+      .mobile-portrait {
+        width: 84px;
+        height: 84px;
+        display: block;
+        overflow: hidden;
+        margin-bottom: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 10px 24px rgba(29, 41, 57, .12);
+      }
+
+      .mobile-portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 10%;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .profile-card,
+      .contact-card,
+      .project-card,
+      .skill {
+        grid-column: 1 / -1;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .footer .container {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero,
+      .container,
+      .nav {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .section {
+        padding: 54px 0;
+      }
+
+      .hero h1 {
+        margin: 18px 0 10px;
+        font-size: 42px;
+      }
+
+      .hero-copy {
+        margin-top: 14px;
+        font-size: 16px;
+      }
+
+      .actions {
+        display: grid;
+        margin-top: 24px;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 26px;
+      }
+
+      .stat {
+        min-height: 102px;
+        padding: 12px 10px;
+      }
+
+      .stat strong {
+        font-size: 23px;
+      }
+
+      .stat span {
+        font-size: 12px;
+      }
+
+      .profile-card,
+      .contact-card,
+      .project-card,
+      .timeline-item,
+      .skill {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="主导航">
+      <a class="brand" href="#top" aria-label="返回首页">
+        <span class="brand-mark">刘</span>
+        <span>刘杰幸</span>
+      </a>
+      <div class="nav-links">
+        <a href="#profile">简介</a>
+        <a href="#experience">经历</a>
+        <a href="#projects">项目</a>
+        <a href="#skills">技能</a>
+        <a href="#contact">联系</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="mobile-portrait" aria-hidden="true">
+          <img src="portrait.jpg" alt="">
+        </div>
+        <span class="eyebrow"><i data-lucide="sparkles"></i> 2027 届土木工程本科 · AI 解决方案方向</span>
+        <h1 id="hero-title">刘杰幸</h1>
+        <p class="hero-subtitle">把工程现场的问题，整理成可落地的 AI 与数据方案。</p>
+        <p class="hero-copy">
+          具备客户沟通、需求分析、方案撰写、项目汇报与数据整理经验，关注 AI 在工程文档管理、活动运营和传统行业数字化中的实际应用。
+        </p>
+        <div class="actions">
+          <a class="button primary" href="mailto:3109146681@qq.com"><i data-lucide="mail"></i>联系我</a>
+          <a class="button secondary" href="resume.pdf" target="_blank" rel="noopener"><i data-lucide="file-down"></i>查看简历 PDF</a>
+        </div>
+        <div class="hero-stats" aria-label="核心数据">
+          <div class="stat">
+            <strong>8 场</strong>
+            <span>客户沟通会参与与需求梳理</span>
+          </div>
+          <div class="stat">
+            <strong>200+</strong>
+            <span>工程文档样本与活动数据记录整理</span>
+          </div>
+          <div class="stat">
+            <strong>25%</strong>
+            <span>活动试点平均参与率提升</span>
+          </div>
+        </div>
+      </div>
+      <aside class="portrait-panel" aria-label="个人照片与定位">
+        <div class="portrait-shell">
+          <img src="portrait.jpg" alt="刘杰幸证件照">
+        </div>
+        <div class="quick-card">
+          <strong>目标定位</strong>
+          <p>AI 解决方案助理、需求分析助理、工程信息化项目助理。</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="profile">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker"><i data-lucide="user-round"></i> PROFILE</span>
+            <h2>个人概览</h2>
+          </div>
+          <p class="section-intro">以工程专业背景连接 AI 应用场景，重点呈现沟通、分析、方案设计与执行落地能力。</p>
+        </div>
+        <div class="grid">
+          <article class="card profile-card">
+            <h3>从土木工程背景出发，理解真实业务，再转化为可执行方案。</h3>
+            <p>
+              目前就读于湖南工程学院土木工程专业，预计 2027 年 6 月毕业。简历中的经历显示出清晰的复合型方向：一方面具备工程类专业背景，能理解施工日志、验收报告等行业文档；另一方面有 AI 解决方案助理经历，能参与客户沟通、竞品分析、方案答辩和素材库建设。
+            </p>
+          </article>
+          <aside class="card contact-card" id="contact">
+            <h3>基本信息</h3>
+            <div class="info-list">
+              <div class="info-item"><i data-lucide="graduation-cap"></i><span>湖南工程学院 · 土木工程本科 · 2027.06 毕业</span></div>
+              <div class="info-item"><i data-lucide="phone"></i><a href="tel:19044227305">19044227305</a></div>
+              <div class="info-item"><i data-lucide="mail"></i><a href="mailto:3109146681@qq.com">3109146681@qq.com</a></div>
+              <div class="info-item"><i data-lucide="badge-check"></i><span>CET-4 · Office · Excel 数据透视 · 文档撰写</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker"><i data-lucide="briefcase-business"></i> EXPERIENCE</span>
+            <h2>教育与实习</h2>
+          </div>
+          <p class="section-intro">从本科专业训练到 AI 解决方案实习，持续积累业务理解、需求拆解与跨团队协作经验。</p>
+        </div>
+        <div class="timeline">
+          <article class="card timeline-item">
+            <div class="time">2023.09 - 2027.06</div>
+            <div>
+              <h3>湖南工程学院</h3>
+              <p class="meta">土木工程 | 本科</p>
+              <p>专业背景帮助理解工程项目流程、工程信息管理和行业文档场景，为后续 AI 文档分类与数字化方案设计提供业务基础。</p>
+            </div>
+          </article>
+          <article class="card timeline-item">
+            <div class="time">2024.07 - 2024.10</div>
+            <div>
+              <h3>启诚科技咨询有限公司</h3>
+              <p class="meta">AI 解决方案助理</p>
+              <ul class="bullets">
+                <li>参与 8 场客户沟通会，会后与销售、产品同事梳理痛点，输出需求分析文档，支撑方案定位。</li>
+                <li>围绕客户对 AI 功能的疑虑，整理竞品对比数据，制作针对性答疑材料，并在方案答辩中协助主答。</li>
+                <li>推动 2 个试点项目签约；沉淀客户问答、竞品分析和方案素材库，被后续 3 个项目参考使用。</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker"><i data-lucide="layers-3"></i> PROJECTS</span>
+            <h2>项目经历</h2>
+          </div>
+          <p class="section-intro">两个项目共同呈现发现问题、整理数据、设计方案、验证结果的完整路径。</p>
+        </div>
+        <div class="grid">
+          <article class="card project-card">
+            <div class="tag-row">
+              <span class="tag">AI 文本分类</span>
+              <span class="tag alt">工程信息管理</span>
+              <span class="tag warm">组长</span>
+            </div>
+            <div>
+              <h3>AI 辅助工程文档智能分类方案设计</h3>
+              <p class="meta">2025.11 - 2025.12</p>
+              <p>面向施工日志、验收报告等工程文档人工归档效率低、易出错的问题，设计适合中小型建筑企业的文档智能分类方案。</p>
+            </div>
+            <ul class="bullets">
+              <li>走访 3 家小型建筑企业，梳理 8 类高频文档与分类痛点。</li>
+              <li>设计数据采集、标注规范、模型训练、系统集成四阶段方案。</li>
+              <li>收集 200 份脱敏工程文档样本，组织 3 位同学完成数据标注。</li>
+              <li>方案获学院创新实践项目立项，并被推荐至校企合作单位作为试点参考。</li>
+            </ul>
+          </article>
+
+          <article class="card project-card">
+            <div class="tag-row">
+              <span class="tag">Excel 分析</span>
+              <span class="tag alt">活动运营</span>
+              <span class="tag warm">职业发展部</span>
+            </div>
+            <div>
+              <h3>学生会活动数据分析与优化方案</h3>
+              <p class="meta">2024.11 - 2025.04</p>
+              <p>担任职业发展部部长期间，针对就业指导活动参与率波动问题，系统分析报名、签到与反馈数据，提出优化方案并试点。</p>
+            </div>
+            <ul class="bullets">
+              <li>整理近一年 12 场活动数据，共计 200 余条记录。</li>
+              <li>通过 Excel 数据透视发现活动类型、考试周安排与宣传渠道对参与率的影响。</li>
+              <li>提出避开考试周、增加实习类活动、强化班级群宣传三项建议。</li>
+              <li>试点活动平均参与率提升 25%，满意度达 90% 以上，报告被采纳推广。</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker"><i data-lucide="settings-2"></i> SKILLS</span>
+            <h2>能力标签</h2>
+          </div>
+          <p class="section-intro">能力重点集中在需求沟通、文档表达、数据分析与 AI 应用理解。</p>
+        </div>
+        <div class="grid">
+          <article class="card skill">
+            <i data-lucide="messages-square"></i>
+            <h3>需求沟通</h3>
+            <p>能参与客户访谈、痛点整理、跨团队信息同步与答疑材料准备。</p>
+          </article>
+          <article class="card skill">
+            <i data-lucide="file-text"></i>
+            <h3>方案撰写</h3>
+            <p>具备需求分析文档、项目方案、汇报 PPT 与优化报告撰写经验。</p>
+          </article>
+          <article class="card skill">
+            <i data-lucide="table-2"></i>
+            <h3>数据分析</h3>
+            <p>熟练使用 Office，能用 Excel 数据透视完成基础分析和结论提炼。</p>
+          </article>
+          <article class="card skill">
+            <i data-lucide="brain-circuit"></i>
+            <h3>AI 理解</h3>
+            <p>了解 AI 基础概念、数据训练流程、文本分类与标注规范设计。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div><strong>刘杰幸</strong><br>AI 解决方案与工程信息化方向个人主页</div>
+      <a href="#top">返回顶部</a>
+    </div>
+  </footer>
+
+  <script>
+    if (window.lucide) {
+      lucide.createIcons({ attrs: { "stroke-width": 1.8 } });
+    }
+  </script>
+</body>
+</html>
